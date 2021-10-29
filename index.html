@@ -1,13 +1,121 @@
 <head>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <link href="./style.css" rel="stylesheet"></script>
 </head>
 
 <body>
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Trabalho de Compiladores</h1> 
+        <div class="input-group mb-3" style="width: 50%;">
+            <input id="sentenca" class="form-control" >
+            <button class="btn btn-outline-secondary" onclick="func(document.getElementById('sentenca').value)">OK</button>
+        </div>
+        <div>
+        <div style="float: left; margin-right:30px; width:30%;">
+            <table id="lang" class="table table-striped table-light table align-middle">
+                <tr>
+                    <th colspan="4" >Gramática</th>
+                </tr>
+                <tr>
+                    <td>S::=</td>
+                    <td>| cAc</td>
+                    <td colspan="2">| aB</td>
+                </tr>
+                <tr>
+                    <td>A::=</td>
+                    <td>| bS</td>
+                    <td>| aB</td>
+                    <td>| ε</td>
+                </tr>
+                <tr>
+                    <td>B::=</td>
+                    <td>| bAc</td>
+                    <td colspan="2">| aCc</td>
+                </tr>
+                <tr>
+                    <td>C::=</td>
+                    <td>| aB</td>
+                    <td colspan="2">| bA</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: left; margin-right:30px;  width:30%;">
+            <table id="first_follow" class="table table-striped table-bordered table-light">
+                <tr>
+                    <th>-</th>
+                    <th>FIRST</th>
+                    <th>FOLLOW</th>
+                </tr>
+                <tr>
+                    <td>S</td>
+                    <td>{c,a}</td>
+                    <td>{$,c}</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>{b,a,ε}</td>
+                    <td>{c}</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>{b,a}</td>
+                    <td>{$,c}</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>{a,b}</td>
+                    <td>{c}</td>
+                </tr>
+            </table>
+        </div>
+        <div style="float: left; width:30%;">
+            <table id="gramatic_table" class="table table-striped table-bordered table-light">
+                <tr>
+                    <th>-</th>
+                    <th>a</th>
+                    <th>b</th>
+                    <th>c</th>
+                    <th>$</th>
+                </tr>
+                <tr>
+                    <td>S</td>
+                    <td>S➝aB</td>
+                    <td>-</td>
+                    <td>S➝cAc</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>A</td>
+                    <td>A➝aB</td>
+                    <td>A➝bS</td>
+                    <td>A➝ε</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>B</td>
+                    <td>B➝aCc</td>
+                    <td>B➝bAc</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>C</td>
+                    <td>C➝aB</td>
+                    <td>C➝bA</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </table>
+        </div>
 
-    <h1>hello world</h1>
 
-    <input id="sentenca">
-    <button onclick="func(document.getElementById('sentenca').value)">OK</button>
-    <table id="table"></table>
+
+
+
+
+
+        <table id="table" class="table table-striped table-bordered table-light" style="width: 70%; margin-left: 15%;"></table>
+    </div>
 </body>

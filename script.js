@@ -32,7 +32,6 @@ class Stack {
 function func(event){
 
     sentence = event
-    console.log(sentence)
     
     let input = new Stack(["$"])
 
@@ -79,23 +78,26 @@ function func(event){
             action = `Ler ${top_input}`
             input.pop()
             stack.pop()
-        }else if(top_stack=== "$"){
+        }else if(top_stack=== "$" || top_input==="$"){
             action = `Erro em ${cont} iterações`
             flag = false;
         }else{
             a = table[row.get(top_stack)][col.get(top_input)]
-            action = a.action
-            if(action === "-") {
+            if(a===undefined) {
                 action = `Erro em ${cont} iterações`
                 flag = false;
             }else{
-                let aux = a.stack.copy()
-
-                stack.pop()
-
-                while(!aux.isempty()){
-                    stack.push(aux.top())
-                    aux.pop()
+                action = a.action
+                if(action === "-") {
+                    action = `Erro em ${cont} iterações`
+                    flag = false;
+                }else{
+                    let aux = a.stack.copy()
+                    stack.pop()
+                    while(!aux.isempty()){
+                        stack.push(aux.top())
+                        aux.pop()
+                    }
                 }
             }
         }
@@ -110,12 +112,11 @@ function func(event){
 }
 
 function loadTable(result) {
-    console.log('result', result)
 
     var body = document.getElementsByTagName('body')[0];
     var tbl = document.getElementById('table');
     tbl.innerHTML = "";
-    tbl.style.width = '100%';
+
     tbl.setAttribute('border', '1');
     var tbdy = document.createElement('tbody');
     
@@ -135,11 +136,15 @@ function loadTable(result) {
             var td = document.createElement('td');
             if(j==0) td.appendChild(document.createTextNode(i+1))
             else td.appendChild(document.createTextNode(result[i][j-1]))
+
             tr.appendChild(td)
         }
         tbdy.appendChild(tr);
     }
+
     tbl.appendChild(tbdy);
     body.appendChild(tbl)
+
+
 }
 
